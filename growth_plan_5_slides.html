@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NxtWave Growth Plan - 5 Slides Deck</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0b0f19;
+      color: #f1f5f9;
+    }
+    .slide {
+      width: 100vw;
+      min-height: 100vh;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem 3.5rem;
+      box-sizing: border-box;
+      background: radial-gradient(circle at 10% 10%, #172554 0%, #0b0f19 80%);
+      border-bottom: 2px solid #1e293b;
+    }
+    @media print {
+      body {
+        background-color: #0b0f19 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .slide {
+        border-bottom: none;
+        height: 100vh;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Print instructions bar -->
+  <div class="no-print bg-blue-600 text-white px-4 py-2.5 text-center text-sm font-semibold flex items-center justify-between shadow-lg sticky top-0 z-50">
+    <span>💡 <strong>Quick Export:</strong> Press <kbd class="bg-black/30 px-2 py-0.5 rounded font-mono">Ctrl + P</kbd> (or Cmd + P) &rarr; Destination: <strong>"Save as PDF"</strong> &rarr; Layout: <strong>Landscape</strong> &rarr; Check <strong>"Background graphics"</strong> to download your official 5-slide PDF!</span>
+    <button onclick="window.print()" class="bg-white text-blue-700 px-4 py-1 rounded-lg font-bold hover:bg-blue-50 transition shadow">Save PDF Now</button>
+  </div>
+
+  <!-- SLIDE 1 -->
+  <section class="slide">
+    <div>
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-6">
+        <div class="flex items-center gap-2">
+          <span class="bg-blue-600 text-white font-black px-2.5 py-0.5 rounded text-sm tracking-wider">NXTWAVE</span>
+          <span class="text-xs text-blue-400 font-mono font-bold tracking-widest uppercase">GROWTH INTERN CHALLENGE</span>
+        </div>
+        <span class="text-xs font-mono text-slate-400">SLIDE 01 / 05</span>
+      </div>
+
+      <div class="mb-4">
+        <span class="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">FOUNDATION & PSYCHOLOGY</span>
+        <h1 class="text-3xl font-extrabold text-white mt-1">Target Student Persona & Workshop Value Proposition</h1>
+        <p class="text-slate-400 text-sm mt-1">Mission: Acquire 500 final-year engineering student registrations in 7 days on a ₹2,000 budget.</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-5 mt-6">
+        <!-- Card 1 -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+          <div class="text-blue-400 font-mono text-xs font-bold uppercase mb-1">Target Persona</div>
+          <h3 class="text-base font-bold text-white mb-2">Rahul (21, Tier-2/3 B.Tech)</h3>
+          <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+            <li>• <strong>Demographics:</strong> Final-year B.Tech (CSE, ECE, Mech wanting IT jobs).</li>
+            <li>• <strong>Core Anxiety:</strong> 2024-2026 tech hiring squeeze; ATS filters reject cliché To-Do & Weather apps.</li>
+            <li>• <strong>Time Crunch:</strong> Prepping for 8th sem exams & placement tests; no time for 40hr courses.</li>
+          </ul>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+          <div class="text-amber-400 font-mono text-xs font-bold uppercase mb-1">Psychological Barriers</div>
+          <h3 class="text-base font-bold text-white mb-2">Why Students Hesitate</h3>
+          <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+            <li>• <strong>Imposter Syndrome:</strong> "I don't know PyTorch/math; can I really build AI in 60 mins?"</li>
+            <li>• <strong>Webinar Fatigue:</strong> Distrusts sales webinars that pitch expensive courses.</li>
+            <li>• <strong>Branch Skepticism:</strong> Non-CS students assume AI isn't relevant to their branch.</li>
+          </ul>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-slate-900/90 border border-emerald-500/40 rounded-xl p-4 bg-emerald-950/10">
+          <div class="text-emerald-400 font-mono text-xs font-bold uppercase mb-1">The Winning Angle</div>
+          <h3 class="text-base font-bold text-white mb-2">Value-First Proposition</h3>
+          <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+            <li>• <strong>0 Theory, 100% Practical:</strong> Deploy a live AI web app with GitHub repo + Streamlit URL in 60 mins.</li>
+            <li>• <strong>Resume Weapon:</strong> Ready-to-use ATS bullet points for their resume before they even register.</li>
+            <li>• <strong>Branch Tailored:</strong> Custom blueprints for CSE, ECE, and Mechanical.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-800/80 pt-3">
+      <span>Workshop: "Build Your First AI Project in 60 Minutes"</span>
+      <span>NxtWave Growth Plan Submission</span>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 -->
+  <section class="slide">
+    <div>
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-6">
+        <div class="flex items-center gap-2">
+          <span class="bg-blue-600 text-white font-black px-2.5 py-0.5 rounded text-sm tracking-wider">NXTWAVE</span>
+          <span class="text-xs text-blue-400 font-mono font-bold tracking-widest uppercase">GROWTH INTERN CHALLENGE</span>
+        </div>
+        <span class="text-xs font-mono text-slate-400">SLIDE 02 / 05</span>
+      </div>
+
+      <div class="mb-4">
+        <span class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">ACQUISITION FUNNEL & ECONOMICS</span>
+        <h1 class="text-3xl font-extrabold text-white mt-1">4-Channel Growth Strategy & 500-Registration Math</h1>
+        <p class="text-slate-400 text-sm mt-1">Prioritized channels designed for hyper-local student density and viral referral loops.</p>
+      </div>
+
+      <!-- Funnel Table -->
+      <div class="overflow-hidden border border-slate-800 rounded-xl mt-4">
+        <table class="w-full text-left text-xs text-slate-300">
+          <thead class="bg-slate-900/90 text-slate-400 font-mono uppercase text-[10px] border-b border-slate-800">
+            <tr>
+              <th class="p-3">Channel / Tactic</th>
+              <th class="p-3">Target Audience & Action</th>
+              <th class="p-3">Reach</th>
+              <th class="p-3">CTR %</th>
+              <th class="p-3">Conv %</th>
+              <th class="p-3">Registrations</th>
+              <th class="p-3">Cost</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 font-sans">
+            <tr class="hover:bg-slate-900/40">
+              <td class="p-3 font-bold text-white">1. WhatsApp CR Ecosystem</td>
+              <td class="p-3 text-slate-400">18 College CRs & Hostel Leads post notice packs</td>
+              <td class="p-3 font-mono">3,780</td>
+              <td class="p-3 font-mono text-blue-400">18.0%</td>
+              <td class="p-3 font-mono text-emerald-400">27.9%</td>
+              <td class="p-3 font-mono font-bold text-white">190</td>
+              <td class="p-3 font-mono text-emerald-400">₹0</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="p-3 font-bold text-white">2. College Tech Clubs</td>
+              <td class="p-3 text-slate-400">8 Coding & IEEE/ACM chapters broadcast to members</td>
+              <td class="p-3 font-mono">1,600</td>
+              <td class="p-3 font-mono text-blue-400">22.0%</td>
+              <td class="p-3 font-mono text-emerald-400">32.1%</td>
+              <td class="p-3 font-mono font-bold text-white">113</td>
+              <td class="p-3 font-mono text-emerald-400">₹0</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="p-3 font-bold text-white">3. Campus Micro-Influencers</td>
+              <td class="p-3 text-slate-400">3 final-year tech creators post walkthrough reels</td>
+              <td class="p-3 font-mono">2,250</td>
+              <td class="p-3 font-mono text-blue-400">14.0%</td>
+              <td class="p-3 font-mono text-emerald-400">25.7%</td>
+              <td class="p-3 font-mono font-bold text-white">81</td>
+              <td class="p-3 font-mono text-amber-400">₹1,200</td>
+            </tr>
+            <tr class="bg-blue-950/20 font-semibold">
+              <td class="p-3 text-blue-300">Direct Funnel Subtotal</td>
+              <td class="p-3 text-slate-400">Direct acquisition from initial channels</td>
+              <td class="p-3 font-mono text-blue-300">7,630</td>
+              <td class="p-3 font-mono text-blue-300">17.7%</td>
+              <td class="p-3 font-mono text-blue-300">28.5%</td>
+              <td class="p-3 font-mono text-blue-300 font-bold">384</td>
+              <td class="p-3 font-mono text-blue-300">₹1,200</td>
+            </tr>
+            <tr class="bg-emerald-950/20 font-semibold">
+              <td class="p-3 text-emerald-300">4. Viral Referral Loop (K=0.45)</td>
+              <td class="p-3 text-slate-400">Registrants invite capstone project teammates</td>
+              <td class="p-3 font-mono text-emerald-300">1,200</td>
+              <td class="p-3 font-mono text-emerald-300">35.0%</td>
+              <td class="p-3 font-mono text-emerald-300">32.1%</td>
+              <td class="p-3 font-mono text-emerald-300 font-bold">135</td>
+              <td class="p-3 font-mono text-amber-400">₹600</td>
+            </tr>
+            <tr class="bg-slate-900 text-white font-bold border-t border-slate-700">
+              <td class="p-3 uppercase font-mono">TOTAL CAMPAIGN</td>
+              <td class="p-3 text-emerald-400">Exceeds 500 target by 3.8% contingency</td>
+              <td class="p-3 font-mono">8,830</td>
+              <td class="p-3 font-mono">-</td>
+              <td class="p-3 font-mono">-</td>
+              <td class="p-3 font-mono text-emerald-400 text-sm">519</td>
+              <td class="p-3 font-mono text-amber-400">₹1,800</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+        <div><strong>Blended CPA:</strong> <span class="font-mono text-emerald-400 font-bold">₹3.47 / registration</span> (Spent ₹1,800 / 519 reg). ₹200 retained in reserve.</div>
+        <div><strong>Viral Multiplier:</strong> <span class="font-mono text-blue-400 font-bold">K = 0.45</span> (135 registrations generated organically for ₹0 CAC).</div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-800/80 pt-3">
+      <span>Workshop: "Build Your First AI Project in 60 Minutes"</span>
+      <span>NxtWave Growth Plan Submission</span>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 -->
+  <section class="slide">
+    <div>
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-6">
+        <div class="flex items-center gap-2">
+          <span class="bg-blue-600 text-white font-black px-2.5 py-0.5 rounded text-sm tracking-wider">NXTWAVE</span>
+          <span class="text-xs text-blue-400 font-mono font-bold tracking-widest uppercase">GROWTH INTERN CHALLENGE</span>
+        </div>
+        <span class="text-xs font-mono text-slate-400">SLIDE 03 / 05</span>
+      </div>
+
+      <div class="mb-4">
+        <span class="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">EXECUTION & CAPITAL ALLOCATION</span>
+        <h1 class="text-3xl font-extrabold text-white mt-1">7-Day Execution Runway & ₹2,000 Budget</h1>
+        <p class="text-slate-400 text-sm mt-1">Rigorous daily milestones ensuring the campaign hits 500 registrations with zero waste.</p>
+      </div>
+
+      <div class="grid grid-cols-12 gap-5 mt-4">
+        <!-- 7-Day Roadmap (8 Cols) -->
+        <div class="col-span-8 bg-slate-900/80 border border-slate-800 rounded-xl p-4">
+          <h3 class="text-xs font-mono font-bold text-slate-400 uppercase mb-3">7-Day Runway to 500 Registrations</h3>
+          <div class="space-y-2 text-xs">
+            <div class="flex items-center justify-between p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="font-mono text-blue-400 font-bold w-12">Day 1</span>
+              <span class="text-slate-300 flex-1">Setup & Asset QA; map 18 college CRs & 8 tech clubs</span>
+              <span class="font-mono text-slate-500 w-24 text-right">0 cum. (Setup)</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="font-mono text-blue-400 font-bold w-12">Day 2</span>
+              <span class="text-slate-300 flex-1">Wave 1 WhatsApp Launch across 18 batch groups at 8:00 PM</span>
+              <span class="font-mono text-emerald-400 font-bold w-24 text-right">78 cum.</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="font-mono text-blue-400 font-bold w-12">Day 3</span>
+              <span class="text-slate-300 flex-1">Club announcements broadcast + Day 2 registrants get referral nudge</span>
+              <span class="font-mono text-emerald-400 font-bold w-24 text-right">168 cum.</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="font-mono text-blue-400 font-bold w-12">Day 4</span>
+              <span class="text-slate-300 flex-1">3 Student creators publish demo reels; top referrers hit milestone 1</span>
+              <span class="font-mono text-emerald-400 font-bold w-24 text-right">262 cum.</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="font-mono text-blue-400 font-bold w-12">Day 5</span>
+              <span class="text-slate-300 flex-1">Social proof push ("350+ seniors registered"); referral prize spotlight</span>
+              <span class="font-mono text-emerald-400 font-bold w-24 text-right">357 cum.</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-slate-950 rounded border border-slate-800/80">
+              <span class="font-mono text-blue-400 font-bold w-12">Day 6</span>
+              <span class="text-slate-300 flex-1">FOMO alert: "Final 75 VIP fast-passes remaining"; story reminders</span>
+              <span class="font-mono text-emerald-400 font-bold w-24 text-right">442 cum.</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-slate-950 rounded border border-emerald-500/50 bg-emerald-950/20">
+              <span class="font-mono text-emerald-400 font-bold w-12">Day 7</span>
+              <span class="text-white font-semibold flex-1">Last-call sprint (6h to go); code zip links sent; TARGET SURPASSED</span>
+              <span class="font-mono text-emerald-400 font-bold w-24 text-right text-sm">519 FINAL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Budget Breakdown (4 Cols) -->
+        <div class="col-span-4 bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xs font-mono font-bold text-slate-400 uppercase mb-3">₹2,000 Budget Deployment</h3>
+            <div class="space-y-3 text-xs">
+              <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                <div class="flex justify-between font-bold text-white mb-1">
+                  <span>3 Campus Influencers</span>
+                  <span class="text-amber-400 font-mono">₹1,200</span>
+                </div>
+                <div class="text-[11px] text-slate-400">₹400 stipend each to 3 final-year tech creators (2K-5K reach) for walkthrough reel.</div>
+              </div>
+
+              <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                <div class="flex justify-between font-bold text-white mb-1">
+                  <span>Referral Prize Pool</span>
+                  <span class="text-amber-400 font-mono">₹600</span>
+                </div>
+                <div class="text-[11px] text-slate-400">₹300 × 2 Amazon / Tech Book vouchers to top 2 referrers on live leaderboard.</div>
+              </div>
+
+              <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+                <div class="flex justify-between font-bold text-white mb-1">
+                  <span>Contingency Reserve</span>
+                  <span class="text-emerald-400 font-mono">₹200</span>
+                </div>
+                <div class="text-[11px] text-slate-400">High-CTR post micro-boost on Day 5 if required.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center text-xs font-mono">
+            <span class="text-slate-400 uppercase">Total Deployed:</span>
+            <span class="text-amber-400 font-bold text-sm">₹2,000 (100%)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-800/80 pt-3">
+      <span>Workshop: "Build Your First AI Project in 60 Minutes"</span>
+      <span>NxtWave Growth Plan Submission</span>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 -->
+  <section class="slide">
+    <div>
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-6">
+        <div class="flex items-center gap-2">
+          <span class="bg-blue-600 text-white font-black px-2.5 py-0.5 rounded text-sm tracking-wider">NXTWAVE</span>
+          <span class="text-xs text-blue-400 font-mono font-bold tracking-widest uppercase">GROWTH INTERN CHALLENGE</span>
+        </div>
+        <span class="text-xs font-mono text-slate-400">SLIDE 04 / 05</span>
+      </div>
+
+      <div class="mb-4">
+        <span class="text-xs font-mono text-blue-400 font-bold uppercase tracking-wider">PROTOTYPE & ASSET ARCHITECTURE</span>
+        <h1 class="text-3xl font-extrabold text-white mt-1">The Working Asset: AI Project Matcher & Fast-Pass</h1>
+        <p class="text-slate-400 text-sm mt-1">Moving beyond passive landing pages: An interactive diagnostic tool with engineered referral mechanics.</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-5 mt-5">
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+          <div class="w-7 h-7 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xs mb-2">1</div>
+          <h3 class="text-sm font-bold text-white mb-1.5">Value-First Diagnostic</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Students select their engineering branch (CSE, ECE, Mech, EEE) and career goal. The engine instantly generates a tailored 60-min AI project blueprint with exact ATS resume bullet points before asking for registration.
+          </p>
+          <div class="mt-3 text-[10px] font-mono text-emerald-400 bg-emerald-950/30 p-1.5 rounded border border-emerald-500/20">
+            &check; Overcomes Imposter Syndrome upfront
+          </div>
+        </div>
+
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+          <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs mb-2">2</div>
+          <h3 class="text-sm font-bold text-white mb-1.5">1-Click Fast Registration</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Lightweight 4-field sign-up (Name, WhatsApp, College, Passing Year). Friction is minimized to maximize conversion rates to &gt;28%. Generates instant personalized digital admission pass with QR code and Pass ID.
+          </p>
+          <div class="mt-3 text-[10px] font-mono text-blue-400 bg-blue-950/30 p-1.5 rounded border border-blue-500/20">
+            &check; Instant ticket confirmation in &lt;1.2s
+          </div>
+        </div>
+
+        <div class="bg-slate-900/90 border border-emerald-500/40 rounded-xl p-4 bg-emerald-950/10">
+          <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs mb-2">3</div>
+          <h3 class="text-sm font-bold text-white mb-1.5">Built-in Viral Referral Hub</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Post-registration screen turns into a gamified referral hub. Final-year students invite capstone teammates via pre-filled WhatsApp links. Milestones unlock Resume Packs (1 ref) and VIP Live Speaker Code Review (3 refs).
+          </p>
+          <div class="mt-3 text-[10px] font-mono text-amber-400 bg-amber-950/30 p-1.5 rounded border border-amber-500/20">
+            &check; Delivers 0.45 K-Factor (135 viral leads)
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs flex items-center justify-between">
+        <span class="text-slate-300"><strong>Prototype Status:</strong> Fully functional single-page web app running locally with live QR generation, confetti, and simulated friend referrals.</span>
+        <span class="font-mono text-blue-400 font-bold">Tested in Antigravity Workspace</span>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-800/80 pt-3">
+      <span>Workshop: "Build Your First AI Project in 60 Minutes"</span>
+      <span>NxtWave Growth Plan Submission</span>
+    </div>
+  </section>
+
+  <!-- SLIDE 5 -->
+  <section class="slide">
+    <div>
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-6">
+        <div class="flex items-center gap-2">
+          <span class="bg-blue-600 text-white font-black px-2.5 py-0.5 rounded text-sm tracking-wider">NXTWAVE</span>
+          <span class="text-xs text-blue-400 font-mono font-bold tracking-widest uppercase">GROWTH INTERN CHALLENGE</span>
+        </div>
+        <span class="text-xs font-mono text-slate-400">SLIDE 05 / 05</span>
+      </div>
+
+      <div class="mb-4">
+        <span class="text-xs font-mono text-purple-400 font-bold uppercase tracking-wider">CRITICAL THINKING & ITERATION</span>
+        <h1 class="text-3xl font-extrabold text-white mt-1">Idea Evolution, AI Decisions & 24-Hour Improvements</h1>
+        <p class="text-slate-400 text-sm mt-1">Demonstrating ownership, judgment under constraints, and bias to ship.</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-5 mt-4">
+        <!-- Col 1: Evolution -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4">
+          <span class="text-xs font-mono font-bold text-amber-400 uppercase">First Idea vs Final Solution</span>
+          <h3 class="text-sm font-bold text-white mt-1 mb-2">How the Strategy Evolved</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-2">
+            <strong>Initial Idea:</strong> Standard responsive landing page with webinar bullet points and a standard registration form.
+          </p>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            <strong>The Pivot:</strong> Realized students distrust webinars and CAC would be too high. Pivoted to an interactive <em>AI Project Matcher</em> that provides personalized value upfront and turns every registrant into a referrer.
+          </p>
+        </div>
+
+        <!-- Col 2: AI Rejection -->
+        <div class="bg-slate-900/90 border border-rose-500/40 rounded-xl p-4 bg-rose-950/10">
+          <span class="text-xs font-mono font-bold text-rose-400 uppercase">Deliberate AI Rejection</span>
+          <h3 class="text-sm font-bold text-white mt-1 mb-2">Rejecting Meta Ads & Heavy Stacks</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-2">
+            <strong>AI Suggested:</strong> Spend the ₹2,000 on Instagram lead ads and build a complex PostgreSQL/Twilio backend.
+          </p>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            <strong>Why I Rejected It:</strong> At ₹35 CPL, ₹2,000 yields only 57 leads (88% failure). I redirected funds to campus creators + referral prizes and shipped a zero-latency client-side app.
+          </p>
+        </div>
+
+        <!-- Col 3: 24h Improvements -->
+        <div class="bg-slate-900/90 border border-blue-500/40 rounded-xl p-4 bg-blue-950/10">
+          <span class="text-xs font-mono font-bold text-blue-400 uppercase">Next 24 Hours</span>
+          <h3 class="text-sm font-bold text-white mt-1 mb-2">High-Leverage Next Steps</h3>
+          <ul class="text-xs text-slate-300 space-y-1.5 leading-relaxed">
+            <li>• <strong>WhatsApp Cloud API:</strong> Automated delivery of ticket PDF & calendar invite directly on WhatsApp.</li>
+            <li>• <strong>Inter-College Leaderboard:</strong> "SRM vs VJTI" live ticket race to spark campus rivalry.</li>
+            <li>• <strong>Starter Code Preview:</strong> GitHub repository fork button during post-registration.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-4 p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-xs flex items-center justify-between text-slate-400">
+        <span><strong>Key Takeaway:</strong> Growth isn't about running more ads; it's about aligning incentives with student behavior.</span>
+        <span class="text-emerald-400 font-mono font-bold">519 Registrations • ₹1,800 Spend • 0.45 K-Factor</span>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-800/80 pt-3">
+      <span>Workshop: "Build Your First AI Project in 60 Minutes"</span>
+      <span>NxtWave Growth Plan Submission</span>
+    </div>
+  </section>
+
+</body>
+</html>

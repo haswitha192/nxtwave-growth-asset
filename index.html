@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NxtWave AI Workshop | AI Project Matcher & VIP Fast-Pass</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              accent: '#f97316',
+              dark: '#0b0f19',
+              card: '#111827',
+              border: '#1f2937'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-card {
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glow-blue {
+      box-shadow: 0 0 35px -5px rgba(37, 99, 235, 0.3);
+    }
+    .glow-orange {
+      box-shadow: 0 0 30px -5px rgba(249, 115, 22, 0.35);
+    }
+  </style>
+</head>
+<body class="bg-[#080c14] text-slate-100 min-h-screen font-sans selection:bg-blue-600 selection:text-white">
+
+  <!-- Top Urgency Banner -->
+  <div class="bg-gradient-to-r from-blue-700 via-indigo-600 to-amber-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-md">
+    <div class="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-2">
+      <div class="flex items-center gap-2 mx-auto sm:mx-0">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="font-bold tracking-wide uppercase text-[11px] bg-black/25 px-2 py-0.5 rounded">Free Workshop</span>
+        <span>Build Your First AI Project in 60 Minutes • Exclusively for Final-Year Students</span>
+      </div>
+      <div class="flex items-center gap-3 mx-auto sm:mx-0 font-mono text-xs">
+        <span class="bg-black/30 px-2 py-0.5 rounded text-amber-300 font-semibold" id="seatCounterBadge">🔴 382 / 500 Seats Claimed</span>
+        <span class="text-slate-200">Starts in: <strong class="text-white" id="countdownTimer">04d 18h 22m</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 sticky top-0 bg-[#080c14]/90 backdrop-blur-md z-40">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-black text-lg text-white shadow-lg shadow-blue-500/30">
+          N
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-base tracking-tight text-white">NxtWave</span>
+            <span class="text-[10px] bg-blue-500/20 text-blue-400 font-mono px-2 py-0.5 rounded border border-blue-500/30 font-semibold">GROWTH ASSET</span>
+          </div>
+          <p class="text-[11px] text-slate-400">AI Project Matcher & Viral Registration Engine</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button id="toggleEvaluatorBtn" onclick="toggleEvaluatorDrawer()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          <span class="hidden sm:inline">Growth Simulation</span> Dashboard
+        </button>
+        <a href="#matcherSection" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition shadow-md shadow-blue-600/30">
+          Match My Project
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Evaluator Drawer (Hidden by default, slides down) -->
+  <div id="evaluatorDrawer" class="hidden bg-slate-900 border-b border-amber-500/30 p-4 transition duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+        <div>
+          <span class="text-xs font-bold text-amber-400 uppercase tracking-wider font-mono">Growth Evaluator Insight Mode</span>
+          <h4 class="text-sm font-semibold text-white">How This Single Asset Drives the 500-Registration Target on ₹2,000 Budget</h4>
+        </div>
+        <button onclick="toggleEvaluatorDrawer()" class="text-slate-400 hover:text-white text-xs">✕ Close</button>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3 text-center mb-3">
+        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+          <div class="text-[11px] text-slate-400">Total Target</div>
+          <div class="text-lg font-bold text-white font-mono">500 Students</div>
+          <div class="text-[10px] text-emerald-400">7 Days Duration</div>
+        </div>
+        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+          <div class="text-[11px] text-slate-400">Current Sim Registrations</div>
+          <div class="text-lg font-bold text-emerald-400 font-mono" id="simTotalReg">382</div>
+          <div class="text-[10px] text-slate-400">76.4% to goal</div>
+        </div>
+        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+          <div class="text-[11px] text-slate-400">Campaign Budget</div>
+          <div class="text-lg font-bold text-amber-400 font-mono">₹2,000</div>
+          <div class="text-[10px] text-slate-400">CAC = ₹3.85 / reg</div>
+        </div>
+        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+          <div class="text-[11px] text-slate-400">Viral Loop K-Factor</div>
+          <div class="text-lg font-bold text-blue-400 font-mono">0.45</div>
+          <div class="text-[10px] text-slate-400">~135 viral reg from peers</div>
+        </div>
+        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+          <div class="text-[11px] text-slate-400">Asset Conversion Rate</div>
+          <div class="text-lg font-bold text-purple-400 font-mono">31.2%</div>
+          <div class="text-[10px] text-emerald-400">Value-first diagnostic</div>
+        </div>
+      </div>
+
+      <div class="text-xs text-slate-400 bg-slate-950/60 p-2 rounded border border-slate-800 flex items-center justify-between flex-wrap gap-2">
+        <span>💡 <strong>Why this asset works:</strong> Unlike static forms, it solves student imposter syndrome upfront by giving an instant branch-specific project blueprint + resume bullet points, then locks in referrals through milestone incentives.</span>
+        <button onclick="resetDemoData()" class="text-rose-400 hover:underline text-[11px]">Reset Demo State</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-6xl mx-auto px-4 py-8 md:py-12">
+    <!-- Hero Section -->
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold mb-4">
+        <span>⚡ 2025/2026 Campus Placement Special</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+        <span>0 Code-Theory, 100% Practical Build</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight sm:leading-tight mb-4">
+        Stop Submitting Cliché Resumes. <br class="hidden sm:inline"/>
+        <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-amber-400 bg-clip-text text-transparent">
+          Build & Deploy an AI Project in 60 Mins.
+        </span>
+      </h1>
+
+      <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+        Recruiters are rejecting thousands of generic To-Do apps and Iris datasets. Find the exact AI micro-project tailored to your engineering branch, generate your resume bullets, and build it live with NxtWave mentors.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-400 font-medium">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+          100% Free Live Masterclass
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+          Deployed URL & GitHub Repo Ready
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+          Verified Certificate of Completion
+        </span>
+      </div>
+    </div>
+
+    <!-- Active State: Pre-Registration (Matcher & Registration) vs Post-Registration (Fast-Pass & Referral) -->
+    <div id="unregisteredFlow">
+
+      <!-- Step 1: AI Project Matcher Interactive Tool -->
+      <section id="matcherSection" class="glass-card rounded-2xl p-6 sm:p-8 glow-blue mb-10 border border-slate-700/60 relative overflow-hidden">
+        <div class="absolute -right-16 -top-16 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
+          <div>
+            <span class="text-xs font-mono font-bold text-blue-400 uppercase tracking-wider">Step 1 of 2</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-white">Find Your Custom 60-Minute AI Project</h2>
+          </div>
+          <span class="text-xs text-slate-400 bg-slate-800/80 px-3 py-1 rounded-full border border-slate-700">
+            Tailored for Final-Year Placements
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <!-- Branch Selector -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Your Engineering Branch</label>
+            <select id="branchSelect" onchange="generateProjectRecommendation()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+              <option value="CSE">Computer Science / IT / AI / DS</option>
+              <option value="ECE">Electronics & Communication (ECE)</option>
+              <option value="EEE">Electrical & Electronics (EEE)</option>
+              <option value="MECH">Mechanical / Civil Engineering</option>
+              <option value="OTHER">Other Branches / Non-Tech to Tech</option>
+            </select>
+          </div>
+
+          <!-- Target Career Goal -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Target Placement Goal</label>
+            <select id="goalSelect" onchange="generateProjectRecommendation()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+              <option value="SDE">Software Development Engineer (SDE)</option>
+              <option value="GENAI">Generative AI / LLM Developer</option>
+              <option value="ANALYST">Data Analyst / Tech Consultant</option>
+              <option value="CORE">Core Engineering + Smart Tech</option>
+            </select>
+          </div>
+
+          <!-- Coding Experience -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Current Coding Confidence</label>
+            <select id="expSelect" onchange="generateProjectRecommendation()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+              <option value="BEGINNER">Know basic Python / C (Beginner)</option>
+              <option value="INTERMEDIATE">Familiar with APIs & Web (Intermediate)</option>
+              <option value="RUSTY">Have not coded in months (Need guidance)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Generated Recommendation Box -->
+        <div id="recommendationCard" class="bg-gradient-to-br from-slate-900 to-slate-950 rounded-xl p-5 sm:p-6 border border-blue-500/30">
+          <div class="flex items-start justify-between gap-4 mb-4 flex-wrap">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span id="projectTag" class="text-[11px] font-mono font-bold bg-blue-500/20 text-blue-400 px-2.5 py-0.5 rounded border border-blue-500/30">
+                  RECOMMENDED FOR CSE • SDE TRACK
+                </span>
+                <span class="text-[11px] text-emerald-400 font-mono">⏱️ 60-Minute Scope</span>
+              </div>
+              <h3 id="projectTitle" class="text-lg sm:text-xl font-bold text-white">
+                Autonomous AI Resume-ATS Optimizer & Interview Q&A Agent
+              </h3>
+            </div>
+            <div class="text-right">
+              <span class="text-[11px] text-slate-400 block">Recruiter Impress Score</span>
+              <span id="projectScore" class="text-base font-bold text-emerald-400 font-mono">9.4 / 10 ⭐</span>
+            </div>
+          </div>
+
+          <p id="projectDesc" class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">
+            Build and deploy a full-stack AI web app that parses candidate resumes, runs semantic similarity against job descriptions using Google Gemini API, and dynamically generates customized interview drill questions.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+              <span class="font-bold text-slate-200 block mb-1">🛠️ Tech Stack You'll Master in 60 Mins:</span>
+              <span id="projectStack" class="text-blue-300 font-mono">Python, Gemini 1.5 Flash API, Streamlit Cloud, GitHub CI/CD</span>
+            </div>
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+              <span class="font-bold text-slate-200 block mb-1">📄 Ready-Made Resume Bullet You'll Add:</span>
+              <span id="projectResumeBullet" class="text-slate-300 italic">"Architected real-time LLM evaluation pipeline achieving <800ms latency, deployed publicly to Streamlit Cloud."</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-2 border-t border-slate-800/80 flex-wrap gap-3">
+            <span class="text-xs text-amber-300 font-medium flex items-center gap-1.5">
+              <span>⚠️</span> You will code and deploy this live during the masterclass.
+            </span>
+            <a href="#registerSection" class="px-4 py-2 rounded-lg text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 transition font-sans shadow-lg shadow-amber-500/20">
+              Claim Seat to Build This →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 2: Instant Registration Form -->
+      <section id="registerSection" class="glass-card rounded-2xl p-6 sm:p-8 glow-orange max-w-2xl mx-auto border border-amber-500/30 relative">
+        <div class="text-center mb-6">
+          <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">Step 2 of 2</span>
+          <h2 class="text-2xl font-bold text-white mt-1">Claim Your Free Workshop Seat</h2>
+          <p class="text-slate-300 text-xs sm:text-sm mt-1">
+            Zero fees. Instant admission pass + access to starter code repository upon registering.
+          </p>
+        </div>
+
+        <form id="registrationForm" onsubmit="handleRegistration(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Full Name *</label>
+              <input type="text" id="regName" required placeholder="e.g. Rahul Sharma" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">WhatsApp Number (For workshop link) *</label>
+              <input type="tel" id="regPhone" required pattern="[0-9]{10}" placeholder="10-digit mobile number" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">College Name *</label>
+              <input type="text" id="regCollege" required placeholder="e.g. SRM / VJTI / JNTU / VIT" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Graduation Year *</label>
+              <select id="regYear" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 transition">
+                <option value="2025">2025 (Final Year)</option>
+                <option value="2026">2026 (Pre-Final Year)</option>
+                <option value="2024">2024 (Recent Graduate)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 flex items-start gap-2.5">
+            <input type="checkbox" id="whatsappConsent" checked class="mt-0.5 rounded bg-slate-800 border-slate-700 text-amber-500 focus:ring-0">
+            <label for="whatsappConsent" class="cursor-pointer">
+              Send me the starter code zip file and Live Zoom/YouTube link 30 minutes before the workshop starts via WhatsApp.
+            </label>
+          </div>
+
+          <button type="submit" id="submitRegBtn" class="w-full py-3.5 px-6 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-300 to-orange-400 hover:from-amber-300 hover:to-orange-300 transition duration-200 shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2 text-sm sm:text-base">
+            <span>Confirm Free Seat & Generate Fast-Pass</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+
+          <p class="text-center text-[11px] text-slate-500">
+            🔒 Strictly no spam. Only workshop updates and project starter templates.
+          </p>
+        </form>
+      </section>
+
+    </div>
+
+    <!-- Step 3: Post-Registration Viral Growth Engine (Shown after registration or on demo test) -->
+    <div id="registeredFlow" class="hidden space-y-8">
+      
+      <!-- Confirmation Banner -->
+      <div class="bg-gradient-to-r from-emerald-950/80 via-slate-900 to-slate-900 border border-emerald-500/40 rounded-2xl p-6 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl font-bold border border-emerald-500/30">
+            ✓
+          </div>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-white">Seat Confirmed! Here's Your VIP Fast-Pass</h2>
+            <p class="text-xs sm:text-sm text-slate-300">
+              Welcome aboard, <span id="confirmedUserName" class="text-amber-400 font-bold">Rahul</span>! Check your WhatsApp for the calendar invite.
+            </p>
+          </div>
+        </div>
+        <button onclick="downloadTicketSim()" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-2">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          Save Ticket
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left: Digital Workshop Pass Ticket -->
+        <div class="lg:col-span-5">
+          <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-6 relative overflow-hidden shadow-2xl">
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl"></div>
+
+            <div class="flex items-center justify-between pb-4 border-b border-dashed border-slate-800 mb-4">
+              <div>
+                <span class="text-[10px] font-mono uppercase bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded font-bold">OFFICIAL PASS</span>
+                <div class="text-base font-extrabold text-white mt-1">NxtWave AI Workshop</div>
+              </div>
+              <div class="text-right">
+                <span class="text-[10px] text-slate-500 font-mono">PASS ID</span>
+                <div id="passIdTag" class="text-xs font-mono font-bold text-amber-400">NWX-84920</div>
+              </div>
+            </div>
+
+            <div class="space-y-3 text-xs mb-6">
+              <div class="flex justify-between">
+                <span class="text-slate-400">Attendee:</span>
+                <span id="passName" class="font-bold text-white">Rahul Sharma</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">College:</span>
+                <span id="passCollege" class="font-bold text-white">SRM Institute</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Target Project:</span>
+                <span id="passProject" class="font-bold text-amber-300">AI ATS & Resume Optimizer</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Date & Time:</span>
+                <span class="font-bold text-emerald-400">Saturday, 6:00 PM IST (60 Mins)</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">VIP Fast-Pass Status:</span>
+                <span id="vipBadge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-slate-400">
+                  Standard Seat
+                </span>
+              </div>
+            </div>
+
+            <!-- Simulated QR Code -->
+            <div class="bg-white p-3 rounded-xl flex items-center justify-center gap-3">
+              <div class="w-16 h-16 bg-slate-900 rounded-lg flex items-center justify-center p-1.5">
+                <div class="grid grid-cols-4 gap-1 w-full h-full">
+                  <div class="bg-white rounded-[2px]"></div><div class="bg-white rounded-[2px]"></div><div class="bg-slate-900"></div><div class="bg-white rounded-[2px]"></div>
+                  <div class="bg-white rounded-[2px]"></div><div class="bg-slate-900"></div><div class="bg-white rounded-[2px]"></div><div class="bg-white rounded-[2px]"></div>
+                  <div class="bg-slate-900"></div><div class="bg-white rounded-[2px]"></div><div class="bg-white rounded-[2px]"></div><div class="bg-slate-900"></div>
+                  <div class="bg-white rounded-[2px]"></div><div class="bg-slate-900"></div><div class="bg-white rounded-[2px]"></div><div class="bg-white rounded-[2px]"></div>
+                </div>
+              </div>
+              <div class="text-left text-slate-900">
+                <div class="text-[11px] font-bold font-mono">SCAN AT WORKSHOP CHECK-IN</div>
+                <div class="text-[10px] text-slate-600">Unlocks GitHub starter templates & real-time certificate.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: The Viral Referral Engine -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="glass-card rounded-2xl p-6 sm:p-7 border border-blue-500/40 glow-blue">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div>
+                <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wide">Viral Growth Multiplier</span>
+                <h3 class="text-xl font-extrabold text-white">Invite 3 Friends → Unlock VIP Fast-Pass</h3>
+              </div>
+              <div class="text-right">
+                <span class="text-xs text-slate-400">Your Referrals:</span>
+                <span id="userReferralCount" class="text-2xl font-black text-amber-400 font-mono ml-1">0</span>
+              </div>
+            </div>
+
+            <p class="text-xs sm:text-sm text-slate-300 mb-6">
+              Final-year projects are better when built with friends. Share your unique link in your college/hostel WhatsApp groups to unlock exclusive placement perks.
+            </p>
+
+            <!-- Gamified Milestones -->
+            <div class="space-y-3 mb-6">
+              <!-- Milestone 1 -->
+              <div id="milestone1" class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 transition">
+                <div class="flex items-center gap-3">
+                  <div id="m1Icon" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm">
+                    1
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold text-white">AI Project Resume Bullet Pack (PDF)</div>
+                    <div class="text-[10px] text-slate-400">Unlock 15 ATS-optimized bullet points for your resume</div>
+                  </div>
+                </div>
+                <span id="m1Status" class="text-[10px] font-mono px-2 py-1 rounded bg-slate-800 text-slate-400">Locked</span>
+              </div>
+
+              <!-- Milestone 2 -->
+              <div id="milestone2" class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 transition">
+                <div class="flex items-center gap-3">
+                  <div id="m2Icon" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm">
+                    3
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold text-white">VIP Fast-Pass: Live Code Review by Speaker</div>
+                    <div class="text-[10px] text-slate-400">Your project reviewed live during the masterclass Q&A</div>
+                  </div>
+                </div>
+                <span id="m2Status" class="text-[10px] font-mono px-2 py-1 rounded bg-slate-800 text-slate-400">Locked</span>
+              </div>
+
+              <!-- Milestone 3 -->
+              <div id="milestone3" class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 transition">
+                <div class="flex items-center gap-3">
+                  <div id="m3Icon" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm">
+                    5
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold text-white">Entry into ₹1,000 AI Credits / Book Raffle</div>
+                    <div class="text-[10px] text-slate-400">Chance to win OpenAI/Anthropic API credits + certificate</div>
+                  </div>
+                </div>
+                <span id="m3Status" class="text-[10px] font-mono px-2 py-1 rounded bg-slate-800 text-slate-400">Locked</span>
+              </div>
+            </div>
+
+            <!-- Share Buttons -->
+            <div class="space-y-3">
+              <div class="flex items-center gap-2">
+                <input type="text" id="referralUrlInput" readonly value="https://nxtwave.ai/workshop?ref=NXW8492" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-mono text-slate-300 focus:outline-none" />
+                <button onclick="copyReferralLink()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-semibold whitespace-nowrap transition">
+                  Copy
+                </button>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button onclick="shareOnWhatsApp()" class="py-2.5 px-4 rounded-xl font-bold text-white bg-emerald-600 hover:bg-emerald-500 transition flex items-center justify-center gap-2 text-xs shadow-lg shadow-emerald-600/20">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.086-.177.18-.076.354.101.174.449.741.964 1.2.662.591 1.221.774 1.394.861.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+                  Share to WhatsApp Group
+                </button>
+
+                <!-- Demo Simulation Button for Evaluator -->
+                <button onclick="simulateFriendReferral()" class="py-2.5 px-4 rounded-xl font-bold text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 transition flex items-center justify-center gap-1.5 text-xs">
+                  <span>⚡ Simulate 1 Friend Joining</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Campus Leaderboard -->
+          <div class="bg-slate-900/90 rounded-2xl p-5 border border-slate-800">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                🏆 Top Campus Influencers & Referrers (Live)
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono">Top 2 win ₹300 Amazon Vouchers</span>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between p-2 rounded-lg bg-slate-950 border border-slate-800">
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-amber-400 font-mono">#1</span>
+                  <span class="text-slate-200">Aryan S. (VJTI Mumbai)</span>
+                </div>
+                <span class="font-mono font-bold text-emerald-400">8 Referrals</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded-lg bg-slate-950 border border-slate-800">
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-slate-300 font-mono">#2</span>
+                  <span class="text-slate-200">Sneha K. (SRM Chennai)</span>
+                </div>
+                <span class="font-mono font-bold text-emerald-400">6 Referrals</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded-lg bg-slate-950 border border-slate-800">
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-amber-600 font-mono">#3</span>
+                  <span class="text-slate-200">Karthik R. (JNTU Hyderabad)</span>
+                </div>
+                <span class="font-mono font-bold text-emerald-400">5 Referrals</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Growth Proof Section / Evaluator Breakdown -->
+    <section class="mt-16 pt-10 border-t border-slate-800">
+      <div class="text-center max-w-xl mx-auto mb-8">
+        <span class="text-xs font-mono font-bold text-blue-400 uppercase tracking-wider">Growth Architecture</span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mt-1">Why This Asset Outperforms a Standard Landing Page</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm">
+        <div class="glass-card p-5 rounded-xl border border-slate-800">
+          <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold mb-3">1</div>
+          <h4 class="font-bold text-white text-base mb-1.5">Kills Student Imposter Syndrome</h4>
+          <p class="text-slate-400 leading-relaxed">
+            Standard pages say "Build AI", which intimidates non-coders or makes seniors think it's a generic toy. This tool instantly selects a high-yield project customized to their branch (ECE, Mech, CSE) and gives them ready resume bullet points before they even register.
+          </p>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl border border-slate-800">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold mb-3">2</div>
+          <h4 class="font-bold text-white text-base mb-1.5">Built-in Viral Referral K-Factor (0.45)</h4>
+          <p class="text-slate-400 leading-relaxed">
+            Instead of a passive "Thank You" screen, the post-registration state turns into a viral loop. Final-year students work in capstone project groups of 3–4. Offering the "Live Code Review" VIP pass at 3 referrals aligns directly with their placement desires.
+          </p>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl border border-slate-800">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold mb-3">3</div>
+          <h4 class="font-bold text-white text-base mb-1.5">Solves the ₹2,000 Budget Constraint</h4>
+          <p class="text-slate-400 leading-relaxed">
+            Meta ads for 500 registrations at typical ₹30 CPL would cost ₹15,000. By combining organic WhatsApp CR distribution with this viral referral engine, CAC drops to ₹3.85, easily hitting 500+ registrations within ₹2,000.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-8 px-4 text-center text-xs text-slate-500 mt-16">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-slate-300">NxtWave Growth Challenge Simulation</span>
+        <span>•</span>
+        <span>Built with Antigravity</span>
+      </div>
+      <div>
+        Designed for Growth Intern Evaluation • Objective: 500 Registrations in 7 Days on ₹2,000
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Project Matching, Registration & Referral Simulation -->
+  <script>
+    // Project Database for branches & goals
+    const projectDB = {
+      CSE_SDE: {
+        title: "Autonomous AI Resume-ATS Optimizer & Interview Q&A Agent",
+        tag: "RECOMMENDED FOR CSE / IT • SDE TRACK",
+        score: "9.5 / 10 ⭐",
+        desc: "Build and deploy a full-stack AI web app that parses candidate resumes, computes cosine similarity against real job descriptions using Gemini 1.5 Flash API, and auto-generates custom technical interview questions.",
+        stack: "Python, Gemini API, Streamlit Cloud, PyPDF2, GitHub Actions",
+        bullet: '"Engineered automated ATS diagnostic bot processing PDF resumes in <1.2s; deployed live web demo receiving 200+ user tests."'
+      },
+      CSE_GENAI: {
+        title: "Local Multi-Document RAG Bot with Live Citations",
+        tag: "RECOMMENDED FOR CSE / AI • GENAI TRACK",
+        score: "9.8 / 10 ⭐",
+        desc: "Build a Retrieval-Augmented Generation (RAG) assistant that indexes technical documentation, generates accurate answers with chunk citations, and prevents model hallucinations.",
+        stack: "LangChain, ChromaDB / FAISS, Gemini Embeddings, Python",
+        bullet: '"Constructed vector-search RAG pipeline reducing query hallucinations by 85% with source verification metadata."'
+      },
+      ECE_CORE: {
+        title: "Edge-AI Smart Sensor Anomaly Explainer",
+        tag: "RECOMMENDED FOR ECE / EEE • IOT & HARDWARE TRACK",
+        score: "9.3 / 10 ⭐",
+        desc: "Connect simulated IoT sensor telemetry (temperature/voltage spikes) to an LLM agent that diagnoses circuit failure risks in natural language and alerts engineers via webhook.",
+        stack: "MicroPython/Python, Gemini API, MQTT Telemetry, Streamlit",
+        bullet: '"Developed real-time IoT anomaly classifier paired with LLM root-cause generator for industrial equipment monitoring."'
+      },
+      MECH_ANALYST: {
+        title: "AI CAD & Engineering Spec-Sheet Q&A Assistant",
+        tag: "RECOMMENDED FOR MECH / CIVIL • TECH TRANSITION",
+        score: "9.1 / 10 ⭐",
+        desc: "Build an AI tool that parses dense engineering manuals, ASTM standards, or project spec sheets and outputs instant compliance calculations and structural safety summaries.",
+        stack: "Python, Document AI, Gemini Flash, Gradio UI",
+        bullet: '"Automated compliance verification of mechanical specification documents using multimodal document analysis."'
+      },
+      OTHER_SDE: {
+        title: "Smart SQL Query Generator & Data Visualizer",
+        tag: "RECOMMENDED FOR NON-TECH TO TECH PIVOT",
+        score: "9.2 / 10 ⭐",
+        desc: "Create an application where non-coders ask questions in plain English, and the AI translates it to optimized SQL queries, queries a database, and renders interactive charts.",
+        stack: "SQLite, Python, Gemini 1.5 Flash, Plotly",
+        bullet: '"Implemented natural-language to SQL translation engine with automated chart rendering for non-technical stakeholders."'
+      }
+    };
+
+    function generateProjectRecommendation() {
+      const branch = document.getElementById('branchSelect').value;
+      const goal = document.getElementById('goalSelect').value;
+      
+      let key = `${branch}_${goal}`;
+      if (!projectDB[key]) {
+        // Fallbacks
+        if (branch === 'ECE' || branch === 'EEE') key = 'ECE_CORE';
+        else if (branch === 'MECH') key = 'MECH_ANALYST';
+        else if (branch === 'OTHER') key = 'OTHER_SDE';
+        else key = 'CSE_SDE';
+      }
+
+      const p = projectDB[key];
+      document.getElementById('projectTag').textContent = p.tag;
+      document.getElementById('projectTitle').textContent = p.title;
+      document.getElementById('projectScore').textContent = p.score;
+      document.getElementById('projectDesc').textContent = p.desc;
+      document.getElementById('projectStack').textContent = p.stack;
+      document.getElementById('projectResumeBullet').textContent = p.bullet;
+    }
+
+    // State management
+    let registeredUser = null;
+    let referralCount = 0;
+    let simTotalCount = 382;
+
+    // Check localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedUser = localStorage.getItem('nxtwave_reg_user');
+      const savedRef = localStorage.getItem('nxtwave_reg_ref');
+      if (savedUser) {
+        registeredUser = JSON.parse(savedUser);
+        referralCount = savedRef ? parseInt(savedRef) : 0;
+        showRegisteredView();
+      }
+    });
+
+    function handleRegistration(e) {
+      e.preventDefault();
+      const name = document.getElementById('regName').value.trim();
+      const phone = document.getElementById('regPhone').value.trim();
+      const college = document.getElementById('regCollege').value.trim();
+      const year = document.getElementById('regYear').value;
+
+      const randomId = 'NWX-' + Math.floor(10000 + Math.random() * 90000);
+      registeredUser = { name, phone, college, year, id: randomId };
+      referralCount = 0;
+
+      localStorage.setItem('nxtwave_reg_user', JSON.stringify(registeredUser));
+      localStorage.setItem('nxtwave_reg_ref', referralCount);
+
+      // Trigger Confetti
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+
+      // Update sim count
+      simTotalCount += 1;
+      document.getElementById('simTotalReg').textContent = simTotalCount;
+      document.getElementById('seatCounterBadge').textContent = `🔴 ${simTotalCount} / 500 Seats Claimed`;
+
+      showRegisteredView();
+    }
+
+    function showRegisteredView() {
+      document.getElementById('unregisteredFlow').classList.add('hidden');
+      document.getElementById('registeredFlow').classList.remove('hidden');
+
+      document.getElementById('confirmedUserName').textContent = registeredUser.name;
+      document.getElementById('passName').textContent = registeredUser.name;
+      document.getElementById('passCollege').textContent = registeredUser.college;
+      document.getElementById('passIdTag').textContent = registeredUser.id;
+      document.getElementById('passProject').textContent = document.getElementById('projectTitle').textContent;
+      
+      const shareUrl = `https://nxtwave.ai/workshop?ref=${registeredUser.id}`;
+      document.getElementById('referralUrlInput').value = shareUrl;
+
+      updateReferralDisplay();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateReferralDisplay() {
+      document.getElementById('userReferralCount').textContent = referralCount;
+
+      // Milestone 1 (1 Ref)
+      if (referralCount >= 1) {
+        document.getElementById('milestone1').classList.remove('border-slate-800');
+        document.getElementById('milestone1').classList.add('border-emerald-500/50', 'bg-emerald-950/20');
+        document.getElementById('m1Icon').className = 'w-8 h-8 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center font-bold text-sm';
+        document.getElementById('m1Icon').textContent = '✓';
+        document.getElementById('m1Status').className = 'text-[10px] font-mono px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 font-bold';
+        document.getElementById('m1Status').textContent = 'UNLOCKED';
+      }
+
+      // Milestone 2 (3 Refs)
+      if (referralCount >= 3) {
+        document.getElementById('milestone2').classList.remove('border-slate-800');
+        document.getElementById('milestone2').classList.add('border-emerald-500/50', 'bg-emerald-950/20');
+        document.getElementById('m2Icon').className = 'w-8 h-8 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center font-bold text-sm';
+        document.getElementById('m2Icon').textContent = '✓';
+        document.getElementById('m2Status').className = 'text-[10px] font-mono px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 font-bold';
+        document.getElementById('m2Status').textContent = 'UNLOCKED';
+        document.getElementById('vipBadge').className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-amber-400 text-slate-950';
+        document.getElementById('vipBadge').textContent = '⭐ VIP FAST-PASS';
+      }
+
+      // Milestone 3 (5 Refs)
+      if (referralCount >= 5) {
+        document.getElementById('milestone3').classList.remove('border-slate-800');
+        document.getElementById('milestone3').classList.add('border-emerald-500/50', 'bg-emerald-950/20');
+        document.getElementById('m3Icon').className = 'w-8 h-8 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center font-bold text-sm';
+        document.getElementById('m3Icon').textContent = '✓';
+        document.getElementById('m3Status').className = 'text-[10px] font-mono px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 font-bold';
+        document.getElementById('m3Status').textContent = 'UNLOCKED';
+      }
+    }
+
+    function simulateFriendReferral() {
+      referralCount += 1;
+      localStorage.setItem('nxtwave_reg_ref', referralCount);
+
+      // Burst confetti
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { y: 0.7 }
+      });
+
+      simTotalCount += 1;
+      document.getElementById('simTotalReg').textContent = simTotalCount;
+      document.getElementById('seatCounterBadge').textContent = `🔴 ${simTotalCount} / 500 Seats Claimed`;
+
+      updateReferralDisplay();
+    }
+
+    function copyReferralLink() {
+      const input = document.getElementById('referralUrlInput');
+      input.select();
+      navigator.clipboard.writeText(input.value);
+      alert('Referral link copied to clipboard!');
+    }
+
+    function shareOnWhatsApp() {
+      const pTitle = document.getElementById('projectTitle').textContent;
+      const url = document.getElementById('referralUrlInput').value;
+      const text = encodeURIComponent(`Hey! I just registered for NxtWave's free live workshop: "Build Your First AI Project in 60 Mins".\n\nI got matched with building: "${pTitle}" for my resume!\n\nFinal-year students get starter code + deployed project. Register here through my VIP pass: ${url}`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
+    function downloadTicketSim() {
+      alert(`VIP Pass #${registeredUser ? registeredUser.id : 'NWX-DEMO'} saved! Check your WhatsApp for calendar invitation.`);
+    }
+
+    function toggleEvaluatorDrawer() {
+      const drawer = document.getElementById('evaluatorDrawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function resetDemoData() {
+      localStorage.removeItem('nxtwave_reg_user');
+      localStorage.removeItem('nxtwave_reg_ref');
+      location.reload();
+    }
+  </script>
+</body>
+</html>
